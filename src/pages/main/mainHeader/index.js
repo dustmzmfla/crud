@@ -3,6 +3,14 @@ import PlusBtn from "../../../svgs/plusBtn";
 import CheckIcon from "../../../svgs/checkIcon";
 
 const StyleCss = styled.div`
+    .mainHeader {
+        display: flex;
+        gap: 12px;
+        justify-content: right;
+        align-items: center;
+        padding: 0 30px;
+        height: 30px;
+    }
 `;
 
 const MainHeader = () => {
@@ -10,7 +18,7 @@ const MainHeader = () => {
         <StyleCss>
             <div className="mainHeader">
                 <PlusBtn/>
-                <CheckIcon width={'16px'} height={'10px'} color={'red'}/>
+                <CheckIcon width={'18'} height={'14'} color={'red'}/>
             </div>
         </StyleCss>
     );
