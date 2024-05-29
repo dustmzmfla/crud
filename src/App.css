@@ -1,3 +1,9 @@
+@charset "utf-8";
+
+* {
+  font-family: 'Pretendard';
+}
+
 .App {
   text-align: center;
 }
