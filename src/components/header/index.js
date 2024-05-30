@@ -5,6 +5,10 @@ import HomeBtn from "../../svgs/homeBtn";
 import { useState } from "react";
 
 const HeaderCss = styled.div`
+    position: sticky;
+    top: 0;
+    z-index: 20;
+
     .header {
         height: 50px;
         background-color: #fff;
@@ -12,6 +16,7 @@ const HeaderCss = styled.div`
         justify-content: space-between;
         align-items: center;
         padding: 0 15px;
+        border-bottom: 2px solid #eee;
     }
 `;
 

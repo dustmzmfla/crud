@@ -12,7 +12,7 @@ const StyleCss = styled.div`
         gap: 15px;
         justify-content: right;
         align-items: center;
-        padding: 15px 30px;
+        padding: 15px;
         height: 30px;
 
         button{
@@ -32,10 +32,22 @@ const StyleCss = styled.div`
                     }
                 }
             }
-
-            
         }
-        
+    }
+
+    @media screen and (max-width: 720px) {
+        .mainHeader {
+            button {
+                &:last-child {
+                    .tooltip {
+                        right: -15px;
+                        &::before {
+                            left: 65%;
+                        }
+                    }
+                }
+            }
+        }
     }
 `;
 
@@ -62,7 +74,7 @@ const MainHeader = (props) => {
                     { toolTip === true && toolLoca === 'tooltip1' ? <Tooltip text={ttext}/> : false }
                 </button>
 
-                <button type="button" className="addBtn" onMouseEnter={()=>{setToolTip(true); setTtext('일정선택'); setToolLoca('tooltip2'); }} onMouseLeave={()=>{ setToolTip(false); setTtext(''); setToolLoca('');}} >
+                <button type="button" className="addBtn" onMouseEnter={()=>{setToolTip(true); setTtext('다중선택'); setToolLoca('tooltip2'); }} onMouseLeave={()=>{ setToolTip(false); setTtext(''); setToolLoca('');}} >
                     <CheckIcon width={'18'} height={'14'}/>
                     { toolTip === true && toolLoca === 'tooltip2' ? <Tooltip text={ttext}/> : false }
                 </button>

@@ -8,7 +8,8 @@ let StyleCss = styled.div`
     .main {
         width: 720px;
         margin: auto;
-        height: 100vh;
+        min-height: 100vh;
+        height: auto;
         background: #e2eeff;
         border-left: 2px solid #eee;
         border-right: 2px solid #eee;
@@ -17,6 +18,7 @@ let StyleCss = styled.div`
     @media screen and (max-width: 720px) {
         .main {
             width: 100%;
+            border: 0;
         }
     }
 `;
