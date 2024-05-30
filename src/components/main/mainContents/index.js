@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import MainContent from "../../../pages/main/mainContents";
+import { useEffect, useState } from "react";
 
 let StyleCss = styled.div`
     .contents {
@@ -20,14 +21,14 @@ let StyleCss = styled.div`
                 height: 320px;
                 &::before {
                     left: -10px;
-                    bottom: 41.5%;
+                    bottom: 37%;
                     top: unset;
                     right: unset;
                 }
 
                 &::after {
                     right: -10px;
-                    bottom: 41.5%;
+                    bottom: 37%;
                     top: unset;
                     left: unset;
                 }
@@ -64,10 +65,22 @@ let StyleCss = styled.div`
 `;
 
 const MainContents = (props) => {
+
+    // 팝업 데이터
+    useEffect(()=>{
+        props.setPopShow(props.popShow);
+        props.setPopText(props.popText);
+    }, [props.popShow, props.popText])
+
+    // 팝업 데이터 보내기
+    // function sendData(){
+    //     props.getPopupData(visible);
+    // }
+
     return (
         <StyleCss>
             <div className={ props.arr === true ? 'contents arrChange' : 'contents' }>
-                <MainContent/>
+                <MainContent popshow={props.popShow} setPopshow={props.setPopShow} popText={props.popText} setPopText={props.setPopText}/>
                 <MainContent/>
                 <MainContent/>
             </div>

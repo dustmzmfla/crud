@@ -126,9 +126,16 @@ const StyleCss = styled.div`
     }
 `;
 
-const MainContent = () => {
+const MainContent = (props) => {
 
-    const [ hover, setHover ] = useState(false);
+    const [ hover, setHover ] = useState(false);;
+
+    // MainContents로 팝업 데이터 보내기
+    function sendData(){
+        props.setPopshow(!props.visible);
+        props.setPopText('삭제 하시겠습니까?');
+    }
+
 
     return(
         <StyleCss onMouseEnter={()=>{setHover(true);}} onMouseLeave={()=>{setHover(false);}}>
@@ -141,7 +148,7 @@ const MainContent = () => {
                 </div>
                 <div className="side02">
                     { hover === true ? 
-                        <div className="icon">
+                        <div className="icon" onClick={()=>{ sendData(); }}>
                             <DeleteBtn/>
                         </div>
                     : false}
