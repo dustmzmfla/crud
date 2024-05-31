@@ -57,10 +57,10 @@ const StyleCss = styled.div`
                     position: relative;
                     width: 100%;
                     cursor: pointer;
-                    padding: 6px 0;
+                    padding: 10px 0;
                     font-size: 14px;
                     font-weight: 200;
-                    border-radius: 3px;
+                    border-radius: 5px;
                     transition: all 0.25s;
 
                     &.confirmBtn {
@@ -78,7 +78,6 @@ const StyleCss = styled.div`
 `;
 
 const Popup = (props) => {
-
     return (
         <StyleCss>
             <div className="popup">

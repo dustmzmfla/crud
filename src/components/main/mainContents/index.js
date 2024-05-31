@@ -65,24 +65,12 @@ let StyleCss = styled.div`
 `;
 
 const MainContents = (props) => {
-
-    // 팝업 데이터
-    useEffect(()=>{
-        props.setPopShow(props.popShow);
-        props.setPopText(props.popText);
-    }, [props.popShow, props.popText])
-
-    // 팝업 데이터 보내기
-    // function sendData(){
-    //     props.getPopupData(visible);
-    // }
-
     return (
         <StyleCss>
             <div className={ props.arr === true ? 'contents arrChange' : 'contents' }>
                 <MainContent popshow={props.popShow} setPopshow={props.setPopShow} popText={props.popText} setPopText={props.setPopText}/>
-                <MainContent/>
-                <MainContent/>
+                <MainContent popshow={props.popShow} setPopshow={props.setPopShow} popText={props.popText} setPopText={props.setPopText}/>
+                <MainContent popshow={props.popShow} setPopshow={props.setPopShow} popText={props.popText} setPopText={props.setPopText}/>
             </div>
         </StyleCss>
     )

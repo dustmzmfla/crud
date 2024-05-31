@@ -2,7 +2,8 @@ import styled from "styled-components";
 import BackBtn from "../../svgs/backBtn";
 import HeaderText from "../../pages/header/headerText";
 import HomeBtn from "../../svgs/homeBtn";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const HeaderCss = styled.div`
     position: sticky;
@@ -20,15 +21,14 @@ const HeaderCss = styled.div`
     }
 `;
 
-const Header = () => {
-    const [ title, setTitle ] = useState('메인화면');
-
+const Header = (props) => {
+    
     return(
         <HeaderCss>
             <div className="header">
-                <BackBtn/>
-                <HeaderText title={title}/>
-                <HomeBtn/>
+                <Link to={'..'}><BackBtn/></Link>
+                <HeaderText title={props.title}/>
+                <Link to="/"><HomeBtn/></Link>
             </div>
         </HeaderCss>
     )

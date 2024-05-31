@@ -5,6 +5,8 @@ import ShowPage from "../../../svgs/showPage";
 import { useState } from "react";
 import Tooltip from "../../event/tooltip";
 import PaperIcon from "../../../svgs/paperIcon";
+import { Link } from "react-router-dom";
+import AddForm from "../../../components/addForm";
 
 const StyleCss = styled.div`
     .mainHeader {
@@ -69,10 +71,12 @@ const MainHeader = (props) => {
 
         <StyleCss>
             <div className="mainHeader">
-                <button type="button" className="addBtn" onMouseEnter={()=>{setToolTip(true); setTtext('일정추가'); setToolLoca('tooltip1'); }} onMouseLeave={()=>{ setToolTip(false); setTtext(''); setToolLoca('');}} >
-                    <PlusBtn/>
-                    { toolTip === true && toolLoca === 'tooltip1' ? <Tooltip text={ttext}/> : false }
-                </button>
+                <Link to={'/schedule'}>
+                    <button type="button" className="addBtn" onMouseEnter={()=>{setToolTip(true); setTtext('일정추가'); setToolLoca('tooltip1'); }} onMouseLeave={()=>{ setToolTip(false); setTtext(''); setToolLoca('');}} >
+                        <PlusBtn/>
+                        { toolTip === true && toolLoca === 'tooltip1' ? <Tooltip text={ttext}/> : false }
+                    </button>
+                </Link>
 
                 <button type="button" className="addBtn" onMouseEnter={()=>{setToolTip(true); setTtext('다중선택'); setToolLoca('tooltip2'); }} onMouseLeave={()=>{ setToolTip(false); setTtext(''); setToolLoca('');}} >
                     <CheckIcon width={'18'} height={'14'}/>
