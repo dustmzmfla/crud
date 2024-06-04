@@ -99,3 +99,11 @@ ul {
 li {
   list-style: none;
 }
+
+.error {
+  color: #ff0000;
+}
+
+.hide {
+  display: none !important;
+}

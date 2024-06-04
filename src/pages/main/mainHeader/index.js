@@ -6,7 +6,6 @@ import { useState } from "react";
 import Tooltip from "../../event/tooltip";
 import PaperIcon from "../../../svgs/paperIcon";
 import { Link } from "react-router-dom";
-import AddForm from "../../../components/addForm";
 
 const StyleCss = styled.div`
     .mainHeader {
