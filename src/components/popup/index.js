@@ -30,7 +30,7 @@ const StyleCss = styled.div`
             position: relative;
             background-color: #fff;
             width: 300px;
-            min-height: 100px;
+            min-height: 150px;
             padding: 15px;
             border-radius: 6px;
             display: flex;

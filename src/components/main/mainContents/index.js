@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import MainContent from "../../../pages/main/mainContents";
-import { useEffect, useState } from "react";
 
 let StyleCss = styled.div`
     .contents {
@@ -16,9 +15,10 @@ let StyleCss = styled.div`
         flex-wrap: wrap;
 
         &.arrChange {
+            justify-content: space-between;
             & > div {
-                width: calc(50% - 38px);
-                height: 320px;
+                width: calc(50% - 6px);
+                height: 350px;
                 &::before {
                     left: -10px;
                     bottom: 37%;

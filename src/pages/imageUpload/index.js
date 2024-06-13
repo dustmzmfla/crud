@@ -15,29 +15,37 @@ const StyleCss = styled.div`
 
         &:hover {
             background-color: #f5f5f5;
+            border: 1px dashed #549d50;
         }
 
         label {
+            position: relative;
+            transition: all 0.25s;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            
+            text-align: center;
+            &.active {
+                background-color: #f5f5f5;
+                border: 1px dashed #549d50;
+            }
             > div {
-                position: relative;
-                transition: all 0.25s;
-                width: 100%;
-                height: 100%;
-                cursor: pointer;
                 display: flex;
                 align-items: center;
                 flex-direction: column;
-                gap: 6px;
                 justify-content: center;
-                &.active {
-                    background-color: #f5f5f5;
-                }
-    
+                gap: 6px;
+                width: 100%;
+                height: 100%;
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: contain;
                 }
+            }
+            p {
+                font-weight: 300;
             }
         }
 
@@ -117,7 +125,7 @@ const ImageUpload = () => {
                         <>
                             <div className={preview === false ? '' : 'hide'}>
                                 <UploadBtn/>
-                                드래그 또는 클릭하여 업로드
+                                <p>드래그 또는 클릭하여 업로드</p>
                             </div>
                             <div className={preview === true ? '' : 'hide'}>
                                 <img id="preview" alt="미리보기" />
@@ -125,8 +133,10 @@ const ImageUpload = () => {
                         </>
                         :
                         <>
-                            <InformationIcon color={'#ff0000'}/>
-                            <p className="error">업로드된 파일을 다시 확인해주세요</p>
+                            <div>
+                                <InformationIcon color={'#ff0000'}/>
+                                <p className="error">업로드된 파일을 다시 확인해주세요</p>
+                            </div>
                         </>
                         }
                         

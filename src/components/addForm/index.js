@@ -8,8 +8,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const StyleCss = styled.div`
     form {
+        position: relative;
         background-color :#fff;
-        padding: 15px;
+        padding: 30px 15px;
         margin: 15px;
         display: flex;
         flex-direction: column;
@@ -52,7 +53,6 @@ const StyleCss = styled.div`
 
             .date {
                 display: flex;
-                flex-direction: column;
                 gap: 6px;
                 
                 width: 100%;
@@ -83,6 +83,17 @@ const StyleCss = styled.div`
                 }
             }
         }
+
+        .thumbNail {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            label {
+                width: 60px;
+                flex: none;
+                font-weight: 500;
+            }
+        }
     }
 `;
 
@@ -102,7 +113,10 @@ const AddForm = (props) => {
                     <input type="text" placeholder="미입력시 여행지+여행으로 고정"></input>
                 </div>
 
-                <ImageUpload/>
+                <div className="thumbNail">
+                    <label className="contentsTitle">썸네일</label>
+                    <ImageUpload/>
+                </div>
 
                 <div className="formContents">
                     <label className="contentsTitle">여행지</label>

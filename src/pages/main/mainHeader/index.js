@@ -14,7 +14,6 @@ const StyleCss = styled.div`
         justify-content: right;
         align-items: center;
         padding: 15px;
-        height: 30px;
 
         button{
             display: flex;
@@ -41,9 +40,9 @@ const StyleCss = styled.div`
             button {
                 &:last-child {
                     .tooltip {
-                        right: -15px;
+                        right: -10px;
                         &::before {
-                            left: 65%;
+                            left: 72%;
                         }
                     }
                 }
