@@ -8,6 +8,7 @@ import { useState } from "react";
 
 const StyleCss = styled.div`
   .index {
+    position: relative;
     width: 720px;
     margin: auto;
     min-height: 100vh;
