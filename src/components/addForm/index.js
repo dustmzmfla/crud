@@ -161,6 +161,7 @@ const AddForm = (props) => {
 
         if ( form.thumbNail === '' && form.location === '' && form.startDate === '' && form.endDate === '' ) {
             setPopShow(true);
+            setPopText('입력칸을 다시 확인해주세요');
             return false;
         }else {
             if ( form.title === '' ) {
@@ -173,12 +174,14 @@ const AddForm = (props) => {
                 startDate: date[0],
                 endDate: date[1],
             });
+            setPopShow(true);
+            setPopText('저장되었습니다');
         }
         
     }
 
     const [ popShow, setPopShow ] = useState(false);
-    const [ popText, setPopText ] = useState('입력칸을 다시 확인해주세요')
+    const [ popText, setPopText ] = useState('');
 
     return (
         <StyleCss>
