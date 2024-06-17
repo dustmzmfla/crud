@@ -2,7 +2,7 @@ import styled from "styled-components";
 import MainHeader from "../../pages/main/mainHeader";
 import MainContents from "./mainContents";
 import {  useEffect, useState } from "react";
-import Popup from "../popup";
+
 
 let StyleCss = styled.div`
     
@@ -29,7 +29,7 @@ const Main = (props) => {
             <div className="main">
                 <MainHeader send={send}/>
                 <MainContents arr={arr} popShow={popShow} setPopShow={setPopShow} popText={popText} setPopText={setPopText}/>
-                { popShow === true ? <Popup popText={popText} setPopText={setPopText} popShow={popShow} setPopShow={setPopShow}/> : false }
+                {/* { popShow === true ? <Popup popText={popText} setPopText={setPopText} popShow={popShow} setPopShow={setPopShow}/> : false } */}
             </div>
         </StyleCss>
     )

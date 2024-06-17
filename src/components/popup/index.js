@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import CloseBtn from "../../svgs/closeBtn";
-import { useState } from "react";
 
 const StyleCss = styled.div`
     .popup {

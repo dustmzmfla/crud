@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ImageUpload from "../../pages/imageUpload";
 import DatePicker from "react-datepicker";
+import axios from "axios";
 import 'react-datepicker/dist/react-datepicker.css';
+import { useNavigate } from "react-router-dom";
+import Popup from "../popup";
 
 
 const StyleCss = styled.div`
@@ -77,36 +80,12 @@ const StyleCss = styled.div`
                 }
             }
 
-            .date {
-                display: flex;
-                gap: 6px;
-                
+            .react-datepicker-wrapper {
                 width: 100%;
-                & > div {
-                    width: 100%;
-                }
+            }
 
-                li {
-                    position: relative;
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-                    gap: 6px;
-                    
-                    label {
-                        font-weight: 400;
-                        font-size: 14px;
-                        width: auto;
-                    }
-
-                    .react-datepicker-wrapper {
-                        width: 100%;
-                    }
-
-                    .react-datepicker__tab-loop {
-                        position: absolute;
-                    }
-                }
+            .react-datepicker__tab-loop {
+                position: absolute;
             }
         }
 
@@ -162,19 +141,44 @@ const AddForm = (props) => {
     // 헤더 타이틀 변경
     useEffect(()=>{ props.headerTitle('일정추가'); });
 
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+    const [dateRange, setDateRange] = useState([null, null]);
+    const [startDate, endDate] = dateRange;
 
     const [form, setForm] = useState({
         title: '',
         thumbNail: '',
         location: '',
-        period: '',
+        startDate: '',
+        endDate: ''
     });
 
-    useEffect(()=>{
-        console.log(form)
-    }, [form])
+    // db.json으로 데이터 보내기 및 유효성 검사
+    const navigate = useNavigate();
+
+    function onSubmit(){
+        const source = document.querySelector('#preview').src;
+        const date = document.querySelector('.datePicker').value.split('-');
+
+        if ( form.thumbNail === '' && form.location === '' && form.startDate === '' && form.endDate === '' ) {
+            setPopShow(true);
+            return false;
+        }else {
+            if ( form.title === '' ) {
+                form.title = form.location + '여행'
+            }
+            axios.post('http://localhost:3001/scedule', {
+                title: form.title,
+                thumbNail: source,
+                location: form.location,
+                startDate: date[0],
+                endDate: date[1],
+            });
+        }
+        
+    }
+
+    const [ popShow, setPopShow ] = useState(false);
+    const [ popText, setPopText ] = useState('입력칸을 다시 확인해주세요')
 
     return (
         <StyleCss>
@@ -194,47 +198,35 @@ const AddForm = (props) => {
 
                 <div className="formContents">
                     <label className="contentsTitle">여행제목</label>
-                    <input type="text" placeholder="미입력시 여행지+여행으로 고정" value={form.title} onChange={e => setForm({...form, title: e.target.value})}></input>
+                    <input type="text" placeholder="미입력시 여행지+여행으로 고정" value={form.title} onChange={e => setForm({...form, title: e.target.value})}/>
                 </div>
 
                 <div className="thumbNail">
                     <label className="contentsTitle">썸네일</label>
-                    <ImageUpload  value={form.thumbNail} setForm={e => setForm({...form, thumbNail: e.target.value})}/>
+                    <ImageUpload/>
                 </div>
 
                 <div className="formContents">
                     <label className="contentsTitle">여행지</label>
-                    <input type="text" placeholder="여행지 입력"></input>
+                    <input type="text" placeholder="여행지 입력"  value={form.location} onChange={e => setForm({...form, location: e.target.value})}/>
                 </div>
                 
 
                 <div className="formContents">
                     <label className="contentsTitle">여행기간</label>
 
-                    <ul className="date">
-                        <li>
-                            <label>출국일</label>
-                            <DatePicker
-                                selected={startDate}
-                                onChange={(date) => setStartDate(date)}
-                                selectsStart
-                                startDate={startDate}
-                                endDate={endDate}
-                            />
-                        </li>
-
-                        <li>
-                            <label>귀국일</label>
-                            <DatePicker
-                                selected={endDate}
-                                onChange={(date) => setEndDate(date)}
-                                selectsEnd
-                                startDate={startDate}
-                                endDate={endDate}
-                                minDate={startDate}
-                            />
-                        </li>
-                    </ul>
+                    <DatePicker
+                        className='datePicker'
+                        selectsRange={true}
+                        startDate={startDate}
+                        endDate={endDate}
+                        onChange={(update, e) => {
+                            setDateRange(update);
+                        }}
+                        isClearable={true}
+                        dateFormat="yyyy.MM.dd"
+                        placeholderText="여행기간 입력"
+                    />
                 </div>
 
                 <div className="holes hole02">
@@ -253,8 +245,10 @@ const AddForm = (props) => {
 
             <div className="footerBtn">
                 <button type="button" id="cancleBtn">취소</button>
-                <button type="button" id="confirmBtn">저장</button>
+                <button type="button" id="confirmBtn" onClick={onSubmit}>저장</button>
             </div>
+
+            { popShow === true ? <Popup popText={popText}/> : false }
         </StyleCss>
     )
 }

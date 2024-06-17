@@ -136,14 +136,13 @@ const MainContent = (props) => {
         props.setPopText('삭제 하시겠습니까?');
     }
 
-
     return(
         <StyleCss onMouseEnter={()=>{setHover(true);}} onMouseLeave={()=>{setHover(false);}}>
             <div className="content">
                 <div className="side01">
                     <div className="imgBox">
-                        <img src="images/destination/seoul.jpg" alt=""/>
-                        <h5 className="destination">서울</h5>
+                        <img src={props.items.thumbNail} alt="미리보기 이미지"/>
+                        <h5 className="destination">{props.items.location}</h5>
                     </div>
                 </div>
                 <div className="side02">
@@ -154,11 +153,11 @@ const MainContent = (props) => {
                     : false}
                     <h3 className="dday">D-5</h3>
 
-                    <h1 className="title">서울여행</h1>
+                    <h1 className="title">{props.items.title}</h1>
 
                     <div className="period">
                         <p>여행기간</p>
-                        <span>0000.00.00 ~ 0000.00.00</span>
+                        <span>{props.items.startDate} ~ {props.items.endDate}</span>
                     </div>
 
                 </div>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import MainContent from "../../../pages/main/mainContents";
+import useFetch from "../../usefetch";
 
 let StyleCss = styled.div`
     .contents {
@@ -65,12 +66,18 @@ let StyleCss = styled.div`
 `;
 
 const MainContents = (props) => {
+    
+    const contentsBox = document.querySelector('.contents');
+
+    // 데이터 가져오기
+    const [dataBase] = useFetch('http://localhost:3001/scedule');
+
     return (
         <StyleCss>
             <div className={ props.arr === true ? 'contents arrChange' : 'contents' }>
-                <MainContent popshow={props.popShow} setPopshow={props.setPopShow} popText={props.popText} setPopText={props.setPopText}/>
-                <MainContent popshow={props.popShow} setPopshow={props.setPopShow} popText={props.popText} setPopText={props.setPopText}/>
-                <MainContent popshow={props.popShow} setPopshow={props.setPopShow} popText={props.popText} setPopText={props.setPopText}/>
+                { dataBase && dataBase.map( (items) => (
+                    <MainContent key={items.id} items={items} popshow={props.popShow} setPopshow={props.setPopShow} popText={props.popText} setPopText={props.setPopText}/>
+                ))}
             </div>
         </StyleCss>
     )

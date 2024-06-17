@@ -96,8 +96,8 @@ const ImageUpload = (props) => {
     }
 
     function handleDrop(e){
-        e.preventDefault();
         const file = e.dataTransfer.files[0];
+        dragOver();
         
         if ( file.type.includes === 'image' ) {
             checkImage(file);
@@ -107,6 +107,7 @@ const ImageUpload = (props) => {
             setPreview(false);
             return false;
         }
+        
     }
 
     // 드래그 시 새창 뜨는거 방지
@@ -123,7 +124,7 @@ const ImageUpload = (props) => {
         <StyleCss>
             <div className="imageUpload">
                 <label className={`${isActive ? 'active' : ''}`} htmlFor="upload" onDragOver={dragOver} onDragEnter={dragStart} onDragLeave={dragEnd} onDrop={handleDrop}>
-                    <img id="preview" alt="미리보기" className={preview === true ? '' : 'hide'}/>
+                    <img id="preview" alt="미리보기" src="" className={preview === true ? '' : 'hide'}/>
                     { error === false ? 
                         <>
                             <div className={preview === false ? '' : 'hide'}>
